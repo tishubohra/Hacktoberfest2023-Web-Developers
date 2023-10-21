@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Example</title>
+    <style>
+        #animated-div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="animated-div"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+//this is javascript folder
+
+const animatedDiv = document.getElementById('animated-div');
+
+function moveElement() {
+    let position = 0;
+    const endPosition = window.innerWidth - animatedDiv.clientWidth;
+    const animationSpeed = 5; // You can adjust the animation speed here (smaller value means faster animation).
+
+    function animate() {
+        if (position <= endPosition) {
+            position += animationSpeed;
+            animatedDiv.style.left = position + 'px';
+            requestAnimationFrame(animate);
+        } else {
+            position = 0; // Reset position after reaching the end of the screen
+            animatedDiv.style.left = position + 'px';
+            requestAnimationFrame(animate);
+        }
+    }
+
+    animate();
+}
+
+moveElement();
